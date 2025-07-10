@@ -26,7 +26,7 @@ const PageTwo = () => {
     >
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', padding: '18px 0 0 18px', gap: 10 }}>
-        <span style={{ fontSize: 24, color: '#1A2B49', cursor: 'pointer', marginRight: 8 }} onClick={() => navigate('/') }>&larr;</span>
+        <span style={{ fontSize: 24, color: '#1A2B49', cursor: 'pointer', marginRight: 8 }} onClick={() => window.history.back() }>&larr;</span>
         <span style={{ fontWeight: 600, fontSize: 20, color: '#1A2B49' }}>Enter your PAN</span>
       </div>
 
