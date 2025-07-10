@@ -7,7 +7,7 @@ function App() {
   return (
     <div
      style={{
-    width: '375px', // fixed mobile width
+    width: '385px', // fixed mobile width
     height: '100vh', // full height
     overflow: 'hidden', // ⬅️ prevents scroll inside this box
     boxShadow: '0 0 10px rgba(0,0,0,0.1)',
