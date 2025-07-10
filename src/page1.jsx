@@ -6,11 +6,12 @@ const Home = () => {
   return (
     <div
       style={{
-        width: '375px',
+        width: '100%',
         minHeight: '100vh',
         height: '100dvh',
         margin: 0,
         padding: 0,
+        paddingTop:25,
         background: '#F9FBFD',
         fontFamily: 'Inter, Arial, sans-serif',
         boxSizing: 'border-box',
