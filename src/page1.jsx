@@ -11,19 +11,40 @@ const Home = () => {
         height: '100dvh',
         margin: 0,
         padding: 0,
-        paddingTop:25,
+        paddingTop: 25,
         background: '#F9FBFD',
         fontFamily: 'Inter, Arial, sans-serif',
         boxSizing: 'border-box',
         position: 'relative',
         overflow: 'hidden',
-        // borderRadius removed
         boxShadow: '0 0 10px rgba(0,0,0,0.1)',
         border: '1px solid #ccc',
-        boxSizing: 'border-box',
         overflowX: 'hidden',
+        transition: 'box-shadow 0.5s cubic-bezier(0.4,0,0.2,1), background 0.5s',
+        animation: 'fadeInUp 0.7s cubic-bezier(0.4,0,0.2,1)',
       }}
     >
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .fade-in {
+          animation: fadeInUp 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        .button-press {
+          transition: transform 0.1s;
+        }
+        .button-press:active {
+          transform: scale(0.97);
+        }
+      `}</style>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', padding: '18px 0 0 18px', gap: 10, boxSizing: 'border-box' }}>
         <span style={{ fontSize: 24, color: '#1A2B49', cursor: 'pointer', marginRight: 8 }} onClick={() => window.history.back()}>&larr;</span>
@@ -92,7 +113,16 @@ const Home = () => {
           </span>
         </div>
         <button
-          onClick={() => { navigate('/about') }}
+          onClick={() => {
+            const page = document.querySelector('.fade-in');
+            if (page) {
+              page.style.animation = 'fadeOutLeft 0.5s cubic-bezier(0.4,0,0.2,1)';
+              setTimeout(() => navigate('/about'), 400);
+            } else {
+              navigate('/about');
+            }
+          }}
+          className="button-press fade-in"
           style={{
             width: '100%',
             background: '#195B97',
@@ -109,6 +139,18 @@ const Home = () => {
         >
           Continue
         </button>
+      <style>{`
+        @keyframes fadeOutLeft {
+          from {
+            opacity: 1;
+            transform: translateX(0);
+          }
+          to {
+            opacity: 0;
+            transform: translateX(-60px);
+          }
+        }
+      `}</style>
       </div>
     </div>
   )

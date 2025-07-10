@@ -7,26 +7,71 @@ const PageTwo = () => {
   const [fileName, setFileName] = React.useState('');
   const fileInputRef = React.useRef(null);
 
+  // Animate back to page1
+  const handleBack = () => {
+    const page = document.querySelector('.fade-in');
+    if (page) {
+      page.style.animation = 'fadeOutLeft 0.5s cubic-bezier(0.4,0,0.2,1)';
+      setTimeout(() => navigate('/'), 400);
+    } else {
+      navigate('/');
+    }
+  };
+
   return (
     <div
+      className="fade-in"
       style={{
         width: '100%',
         minHeight: '100vh',
         height: '100dvh',
         margin: 0,
         padding: 0,
-         paddingTop:25,
+        paddingTop: 25,
         background: '#F9FBFD',
         fontFamily: 'Inter, Arial, sans-serif',
         boxSizing: 'border-box',
         position: 'relative',
         overflow: 'hidden',
         border: '1px solid #ccc',
+        transition: 'box-shadow 0.5s cubic-bezier(0.4,0,0.2,1), background 0.5s',
+        animation: 'fadeInUp 0.7s cubic-bezier(0.4,0,0.2,1)',
       }}
     >
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .fade-in {
+          animation: fadeInUp 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        .button-press {
+          transition: transform 0.1s;
+        }
+        .button-press:active {
+          transform: scale(0.97);
+        }
+        @keyframes fadeOutLeft {
+          from {
+            opacity: 1;
+            transform: translateX(0);
+          }
+          to {
+            opacity: 0;
+            transform: translateX(-60px);
+          }
+        }
+      `}</style>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', padding: '18px 0 0 18px', gap: 10 }}>
-        <span style={{ fontSize: 24, color: '#1A2B49', cursor: 'pointer', marginRight: 8 }} onClick={() => window.history.back() }>&larr;</span>
+        <span style={{ fontSize: 24, color: '#1A2B49', cursor: 'pointer', marginRight: 8 }} onClick={handleBack}>&larr;</span>
         <span style={{ fontWeight: 600, fontSize: 20, color: '#1A2B49' }}>Enter your PAN</span>
       </div>
 
